@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>$HOPE100</title>
+
+    <!-- redeploying -->
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/images/logo.jpg" type="image/x-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui"],
+              display: ["Poppins", "ui-sans-serif", "system-ui"],
+            },
+            colors: {
+              brand: {
+                indigo: "#4F46E5" /* primary */,
+                teal: "#14B8A6" /* secondary */,
+                amber: "#F59E0B" /* accent */,
+              },
+            },
+            boxShadow: {
+              soft: "0 10px 30px -10px rgb(0 0 0 / 0.15)",
+              glow: "0 12px 40px -12px rgba(79,70,229,0.35)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- AOS (Animate On Scroll) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .section-chip::after {
+        content: "";
+        display: block;
+        height: 3px;
+        width: 64px;
+        margin-top: 0.5rem;
+        background-image: linear-gradient(90deg, #4f46e5, #14b8a6, #f59e0b);
+        border-radius: 9999px;
+      }
+      /* Decorative wave dividers */
+      .wave-top {
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="%23ffffff" d="M0,64L48,80C96,96,192,128,288,122.7C384,117,480,75,576,74.7C672,75,768,117,864,128C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>')
+          no-repeat center/cover;
+      }
+      .bg-about {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)),
+          url("./images/bg.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+      }
+    </style>
+  </head>
+
+  <body class="text-slate-800 bg-white">
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-50 backdrop-blur bg-teal-500 border-b border-slate-100"
+    >
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <!-- Logo -->
+          <a href="/" class="flex items-center gap-2 group">
+            <span
+              class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-500/10 ring-1 ring-brand.indigo/20"
+            >
+              <svg
+                class="h-5 w-5 text-indigo-500 group-hover:scale-110 transition"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12.001 21s-6.716-4.39-9.223-8.077C.962 10.311 2.07 7.4 4.64 6.318c1.64-.709 3.55-.295 4.76.98l.6.63.6-.63c1.21-1.275 3.12-1.69 4.76-.98 2.57 1.082 3.68 3.993 1.86 6.605C18.718 16.61 12.001 21 12.001 21z"
+                />
+              </svg>
+            </span>
+            <span class="font-display text-xl font-extrabold tracking-tight"
+              >Hope<span class="text-indigo-500">100</span></span
+            >
+          </a>
+
+          <!-- Nav -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a
+              href="#about"
+              class="text-sm font-medium hover:text-indigo-500 transition"
+              >About</a
+            >
+            <a
+              href="#tokenomics"
+              class="text-sm font-medium hover:text-indigo-500 transition"
+              >Tokenomics</a
+            >
+            <a
+              href="#donations"
+              class="text-sm font-medium hover:text-indigo-500 transition"
+              >Charities</a
+            >
+            <a
+              href="#contact"
+              class="text-sm font-medium hover:text-indigo-500 transition"
+              >Contact</a
+            >
+            <a
+              href="https://www.dextools.io/app/en/solana/pair-explorer/Fvbwx3pEPMhrbEm5E7hJGGh56Nd42ceyXTEYwYGRpump?t=1759251868620"
+              class="inline-flex items-center rounded-full bg-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-soft hover:shadow focus:outline-none focus:ring-2 focus:ring-brand.indigo/40 hover:bg-indigo-600 transition"
+              >CHART</a
+            >
+          </nav>
+
+          <!-- Mobile menu button -->
+          <button
+            id="menuBtn"
+            class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-slate-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand.indigo/30"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile dropdown -->
+      <div
+        id="mobileMenu"
+        class="md:hidden hidden border-t border-slate-100 bg-white/95 backdrop-blur"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-3 space-y-2">
+          <a href="#about" class="block px-2 py-2 rounded hover:bg-slate-100"
+            >About</a
+          >
+          <a
+            href="#tokenomics"
+            class="block px-2 py-2 rounded hover:bg-slate-100"
+            >Tokenomics</a
+          >
+          <a
+            href="#donations"
+            class="block px-2 py-2 rounded hover:bg-slate-100"
+            >Donations</a
+          >
+          <a href="#contact" class="block px-2 py-2 rounded hover:bg-slate-100"
+            >Contact</a
+          >
+          <a
+            href="https://www.dextools.io/app/en/solana/pair-explorer/Fvbwx3pEPMhrbEm5E7hJGGh56Nd42ceyXTEYwYGRpump?t=1759251868620"
+            class="block px-4 py-2 text-center rounded-full bg-indigo-500 text-white font-semibold hover:bg-indigo-600 transition"
+            >CHART</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO (warm colorful gradient) -->
+    <section class="relative">
+      <div
+        class="absolute inset-0 -z-10 bg-[radial-gradient(1000px_500px_at_10%_10%,#c43d3d,transparent_50%),radial-gradient(800px_480px_at_90%_15%,#c43d3d,transparent_55%),linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)]"
+      ></div>
+      <div
+        class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-center"
+      >
+        <div data-aos="fade-right">
+          <span
+            class="section-chip inline-block text-xs uppercase tracking-widest text-teal-500 font-semibold"
+            >Give Light • Grow Hope</span
+          >
+          <h1
+            class="mt-6 font-display text-4xl sm:text-5xl lg:text-5xl font-extrabold leading-tight uppercase"
+          >
+            A brighter future, <br />
+            <span
+              class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-teal-400 to-amber-400"
+              >powered by you</span
+            >
+          </h1>
+          <p class="mt-5 text-base sm:text-lg text-slate-700/90 max-w-xl">
+            <strong class="text-red-600">$HOPE100</strong> powers real
+            change—fueling food, water, and education for those who need it
+            most. Every token moves us closer to impact, with full transparency
+            and trusted partnerships.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3" id="donate">
+            <a
+              href="https://www.dextools.io/app/en/solana/pair-explorer/Fvbwx3pEPMhrbEm5E7hJGGh56Nd42ceyXTEYwYGRpump?t=1759251868620"
+              class="inline-flex items-center rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-glow hover:shadow focus:ring-2 focus:ring-brand.indigo/40 transition"
+              >View Chart</a
+            >
+            <a
+              href="https://pump.fun/coin/Fvbwx3pEPMhrbEm5E7hJGGh56Nd42ceyXTEYwYGRpump"
+              class="inline-flex items-center rounded-full bg-white/80 ring-1 ring-slate-200 px-6 py-3 text-sm font-semibold hover:ring-brand.indigo/60 hover:text-indigo-500 transition"
+              >Buy Now</a
+            >
+            <!-- <a
+              href="#about"
+              class="inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold ring-1 ring-slate-200 hover:ring-slate-300 hover:shadow transition"
+              >How We Work</a
+            > -->
+          </div>
+        </div>
+        <div data-aos="fade-left" class="relative">
+          <img
+            src="./images/logo.jpg"
+            alt="Volunteers"
+            class="w-full rounded-2xl shadow-soft"
+          />
+          <div class="absolute -bottom-6 -left-6 hidden sm:block">
+            <div
+              class="rounded-xl bg-white shadow-soft p-4 border border-slate-100"
+            >
+              <p class="text-sm font-semibold">25,000+ meals funded</p>
+              <p class="text-xs text-slate-500">and counting — thanks to you</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT (soft teal tint bg) -->
+    <!-- linear-gradient(180deg,white_0%,#F7FFFD_100%) -->
+    <section id="about" class="py-16 lg:py-24 bg-about">
+      <div
+        class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center"
+      >
+        <div data-aos="zoom-in-up">
+          <!-- <img
+            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1600&auto=format&fit=crop"
+            alt="Classroom"
+            class="w-full rounded-2xl shadow-soft"
+          /> -->
+        </div>
+        <div data-aos="fade-up">
+          <span
+            class="section-chip inline-block text-xs uppercase tracking-widest text-white font-semibold"
+            >About $HOPE100</span
+          >
+          <h2
+            class="mt-4 font-display text-3xl text-white sm:text-4xl font-bold"
+          >
+            Community-led, data-backed impact
+          </h2>
+          <p class="mt-4 text-slate-700 leading-relaxed text-white">
+            We co-design programs with local NGOs, track every dollar on-chain,
+            and publish open reports quarterly.
+          </p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-3">
+              <span
+                class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-teal-500/10 text-teal-500"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.2l-3.5-3.5L4 14.2 9 19l11-11-1.5-1.5z" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-medium text-white">100% Impact Model</p>
+                <p class="text-sm text-slate-600 text-white">
+                  Sponsors cover operations.
+                </p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span
+                class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-teal-500/10 text-teal-500"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.2l-3.5-3.5L4 14.2 9 19l11-11-1.5-1.5z" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-medium text-white">Local Partnerships</p>
+                <p class="text-sm text-slate-600 text-white">
+                  Solutions built with communities.
+                </p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span
+                class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-teal-500/10 text-teal-500"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.2l-3.5-3.5L4 14.2 9 19l11-11-1.5-1.5z" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-medium text-white">Open Reporting</p>
+                <p class="text-sm text-slate-600 text-white">
+                  Impact dashboards & audits.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div class="mt-8">
+            <a
+              href="tglink"
+              class="inline-flex items-center rounded-full bg-teal-500 px-6 py-3 text-sm font-semibold text-white shadow-soft hover:shadow-md hover:bg-teal-600 transition"
+              >Join Community</a
+            >
+            <a
+              href="https://x.com/Hope500solana"
+              class="inline-flex items-center rounded-full bg-teal-500 px-6 py-3 text-sm font-semibold text-white shadow-soft hover:shadow-md hover:bg-teal-600 transition"
+              >Follow on X</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOKENOMICS (light indigo tint section + colorful cards) -->
+    <section
+      id="tokenomics"
+      class="py-16 lg:py-24 bg-[linear-gradient(180deg,#F7F8FF_0%,white_100%)]"
+    >
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <span
+            class="section-chip inline-block text-xs uppercase tracking-widest text-teal-500 font-semibold"
+            >$HOPE100 Token</span
+          >
+          <h2 class="mt-4 font-display text-3xl sm:text-4xl font-bold">
+            Tokenomics &amp; Distribution
+          </h2>
+          <p class="mt-4 text-slate-600 text-sm">
+            CONTACT ADDRESS
+            <br />
+            <span class="font-semibold text-xl">
+              Fvbwx3pEPMhrbEm5E7hJGGh56Nd42ceyXTEYwYGRpump</span
+            >
+          </p>
+        </div>
+
+        <div class="mt-12 grid lg:grid-cols-2 gap-10 items-center">
+          <!-- Visual -->
+          <div data-aos="fade-right" class="order-2 lg:order-1">
+            <img
+              src="./images/logo.jpg"
+              alt="Growth"
+              class="w-full rounded-2xl shadow-soft"
+            />
+            <p class="mt-3 text-xs text-slate-500">
+              Growth & sustainability — a symbol of long-term impact
+            </p>
+          </div>
+
+          <!-- Stats Cards -->
+          <div data-aos="fade-left" class="order-1 lg:order-2">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div
+                class="relative rounded-2xl p-6 shadow-soft ring-1 ring-slate-100 bg-[linear-gradient(135deg,white_0%,#DCDAFA_45%,rgba(79,70,229,0.12)_100%)] hover:-translate-y-1 transition"
+              >
+                <p class="text-xs uppercase tracking-widest text-slate-600">
+                  Supply
+                </p>
+                <p class="mt-2 font-display text-2xl font-bold">1 Billion</p>
+                <p class="text-sm text-slate-700 mt-1">Fixed; no future mint</p>
+              </div>
+              <div
+                class="relative rounded-2xl p-6 shadow-soft ring-1 ring-slate-100 bg-[linear-gradient(135deg,white_0%,#D0F1ED_45%,rgba(20,184,166,0.12)_100%)] hover:-translate-y-1 transition"
+              >
+                <p class="text-xs uppercase tracking-widest text-slate-600">
+                  Tax
+                </p>
+                <p class="mt-2 font-display text-2xl font-bold">
+                  0% buy / 0% sell
+                </p>
+                <p class="text-sm text-slate-700 mt-1">
+                  Zero tax on buy & sell
+                </p>
+              </div>
+              <div
+                class="relative rounded-2xl p-6 shadow-soft ring-1 ring-slate-100 bg-[linear-gradient(135deg,white_0%,#FDECCE_45%,rgba(245,158,11,0.12)_100%)] hover:-translate-y-1 transition"
+              >
+                <p class="text-xs uppercase tracking-widest text-slate-600">
+                  Liquidity
+                </p>
+                <p class="mt-2 font-display text-2xl font-bold">100% Burned</p>
+                <p class="text-sm text-slate-700 mt-1">
+                  Liquidity Pool 100% Burned
+                </p>
+              </div>
+              <div
+                class="relative rounded-2xl p-6 shadow-soft ring-1 ring-slate-100 bg-[linear-gradient(135deg,white_0%,#DCDAFA_30%,#D0F1ED_65%,#FDECCE_100%)] hover:-translate-y-1 transition"
+              >
+                <p class="text-xs uppercase tracking-widest text-slate-600">
+                  Ticker
+                </p>
+                <p class="mt-2 font-display text-2xl font-bold">$HOPE100</p>
+                <p class="text-sm text-slate-700 mt-1">
+                  Project Name : HOPE100
+                </p>
+              </div>
+            </div>
+            <div class="mt-6 rounded-xl bg-white/80 p-5 ring-1 ring-slate-200">
+              <p class="text-sm text-slate-700">
+                <span class="font-semibold">Notes:</span> Token addresses & lock
+                proofs published after audit. DYOR; not financial advice.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATIONS (warm gradient section) -->
+    <section id="donations" class="relative py-16 lg:py-24">
+      <div
+        class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#ECFEFF_0%,#FFF7ED_100%)]"
+      ></div>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+          <span
+            class="section-chip inline-block text-xs uppercase tracking-widest text-teal-500 font-semibold"
+            >Where donations go</span
+          >
+          <h2 class="mt-4 font-display text-3xl sm:text-4xl font-bold">
+            Programs we’re funding right now
+          </h2>
+          <p class="mt-4 text-slate-700">
+            We support proven nonprofits with strong governance and measurable
+            outcomes.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Card 1 -->
+          <a
+            href="https://www.stjude.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group rounded-2xl overflow-hidden border border-slate-200 bg-white/90 backdrop-blur shadow-soft hover:-translate-y-1 transition"
+            data-aos="zoom-in"
+          >
+            <div class="aspect-[16/10] overflow-hidden">
+              <img
+                src="./images/st.png"
+                alt="St. Jude Research Hospital"
+                class="h-full w-full object-cover group-hover:scale-105 transition duration-300"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold">
+                St. Jude Research Hospital
+              </h3>
+              <p class="mt-2 text-sm text-slate-600">
+                A leading children's hospital, St. Jude treats the toughest..
+              </p>
+              <div
+                class="mt-4 inline-flex items-center text-indigo-500 font-medium text-sm group-hover:gap-2 transition"
+              >
+                Learn more
+                <svg
+                  class="ml-1 h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M13 5l7 7-7 7M5 12h14" />
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2 -->
+          <a
+            href="https://www.savethechildren.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group rounded-2xl overflow-hidden border border-slate-200 bg-white/90 backdrop-blur shadow-soft hover:-translate-y-1 transition"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            <div class="aspect-[16/10] overflow-hidden">
+              <img
+                src="./images/save.svg"
+                alt="Food distribution"
+                class="h-full w-full object-cover group-hover:scale-105 transition duration-300"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold">Save The Children</h3>
+              <p class="mt-2 text-sm text-slate-600">
+                We believe that every child deserves a future with access to basic rights...
+              </p>
+              <div
+                class="mt-4 inline-flex items-center text-indigo-500 font-medium text-sm group-hover:gap-2 transition"
+              >
+                Learn more
+                <svg
+                  class="ml-1 h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M13 5l7 7-7 7M5 12h14" />
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3 -->
+          <a
+            href="https://www.ifaw.org/international"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group rounded-2xl overflow-hidden border border-slate-200 bg-white/90 backdrop-blur shadow-soft hover:-translate-y-1 transition"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            <div class="aspect-[16/10] overflow-hidden">
+              <img
+                src="./images/Ifaw_logo.png"
+                alt="Education support"
+                class="h-full w-full object-cover group-hover:scale-105 transition duration-300"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold">International Fund for Animal Welfare</h3>
+              <p class="mt-2 text-sm text-slate-600">
+                Fresh thinking and bold action for animals, people...
+              </p>
+              <div
+                class="mt-4 inline-flex items-center text-indigo-500 font-medium text-sm group-hover:gap-2 transition"
+              >
+                Learn more
+                <svg
+                  class="ml-1 h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M13 5l7 7-7 7M5 12h14" />
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4 -->
+          <a
+            href="https://professional.heart.org/en/research-programs/aha-funding-opportunities?gad_source=1&gad_campaignid=21691990005&gbraid=0AAAAAD_LYdjEZkPnNT8_fxbfgVv2tWnjI&gclid=CjwKCAjw_-3GBhAYEiwAjh9fUG234onb1tGJbYzpA5Jp09-MUhFA4Wbe-TSUhevasWiWkkEVp4WMBRoCvf4QAvD_BwE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group rounded-2xl overflow-hidden border border-slate-200 bg-white/90 backdrop-blur shadow-soft hover:-translate-y-1 transition"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            <div class="aspect-[16/10] overflow-hidden">
+              <img
+                src="./images/ame.png"
+                alt="Education support"
+                class="h-full w-full object-cover group-hover:scale-105 transition duration-300"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl font-bold">American Heart Association</h3>
+              <p class="mt-2 text-sm text-slate-600">
+                Access American Heart data — Learn about 12 Essential Elements guiding...
+              </p>
+              <div
+                class="mt-4 inline-flex items-center text-indigo-500 font-medium text-sm group-hover:gap-2 transition"
+              >
+                Learn more
+                <svg
+                  class="ml-1 h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M13 5l7 7-7 7M5 12h14" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (deep gradient CTA) -->
+    <section id="contact" class="py-16 lg:py-24">
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div
+          class="absolute inset-0 -z-10 rounded-3xl bg-[linear-gradient(135deg,#7a2323_0%,#0f766e_100%)]"
+        ></div>
+        <div
+          class="relative rounded-3xl p-10 sm:p-14 text-white overflow-hidden"
+        >
+          <div
+            class="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-white/10 blur-2xl"
+          ></div>
+          <div
+            class="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-white/10 blur-2xl"
+          ></div>
+
+          <div class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+            <span
+              class="inline-block text-xs uppercase tracking-widest text-teal-200/90 font-semibold section-chip"
+              >Stay connected</span
+            >
+            <h2 class="mt-4 font-display text-3xl sm:text-4xl font-bold">
+              Let’s build brighter futures, together
+            </h2>
+            <p class="mt-4 text-indigo-100">
+              Follow our work, join a volunteer day, or become a monthly
+              supporter.
+            </p>
+          </div>
+
+          <div class="mt-8 flex justify-center">
+            <div
+              class="flex items-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <a
+                aria-label="X (Twitter)"
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex h-12 w-12 items-center justify-center rounded-full ring-1 ring-white/30 bg-white/10 hover:ring-amber-300 hover:scale-105 transition"
+              >
+                <svg
+                  class="h-5 w-5 text-white group-hover:text-amber-300 transition"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M18.244 3H21l-6.5 7.43L22 21h-6.09l-4.77-6.223L5.6 21H3l7.06-8.073L2 3h6.18l4.32 5.74L18.244 3zM17.14 19h1.69L8.03 5H6.25l10.89 14z"
+                  />
+                </svg>
+              </a>
+              <a
+                aria-label="Instagram"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex h-12 w-12 items-center justify-center rounded-full ring-1 ring-white/30 bg-white/10 hover:ring-amber-300 hover:scale-105 transition"
+              >
+                <svg
+                  class="h-5 w-5 text-white group-hover:text-amber-300 transition"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3a5 5 0 1 0 .001 10.001A5 5 0 0 0 12 7zm0 2.25A2.75 2.75 0 1 1 9.25 12 2.753 2.753 0 0 1 12 9.25zM17.25 6a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"
+                  />
+                </svg>
+              </a>
+              <a
+                aria-label="Facebook"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex h-12 w-12 items-center justify-center rounded-full ring-1 ring-white/30 bg-white/10 hover:ring-amber-300 hover:scale-105 transition"
+              >
+                <svg
+                  class="h-5 w-5 text-white group-hover:text-amber-300 transition"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M22 12.07C22 6.48 17.52 2 11.93 2 6.34 2 1.86 6.48 1.86 12.07c0 4.86 3.44 8.9 7.94 9.86v-6.98H7.9v-2.88h1.9v-2.2c0-1.88 1.12-2.92 2.83-2.92.82 0 1.67.15 1.67.15v1.84h-.94c-.93 0-1.22.58-1.22 1.18v1.95h2.08l-.33 2.88h-1.75v6.98c4.5-.96 7.94-5 7.94-9.86z"
+                  />
+                </svg>
+              </a>
+              <a
+                aria-label="YouTube"
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex h-12 w-12 items-center justify-center rounded-full ring-1 ring-white/30 bg-white/10 hover:ring-amber-300 hover:scale-105 transition"
+              >
+                <svg
+                  class="h-5 w-5 text-white group-hover:text-amber-300 transition"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M23.5 6.2a3.1 3.1 0 0 0-2.2-2.2C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.3.5A3.1 3.1 0 0 0 .5 6.2 32.9 32.9 0 0 0 0 12a32.9 32.9 0 0 0 .5 5.8 3.1 3.1 0 0 0 2.2 2.2C4.5 20.5 12 20.5 12 20.5s7.5 0 9.3-.5a3.1 3.1 0 0 0 2.2-2.2c.3-1.8.5-3.9.5-5.8s-.2-4-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-indigo-500 text-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div data-aos="fade-up">
+            <div class="flex items-center gap-2">
+              <span
+                class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/20"
+              >
+                <svg
+                  class="h-5 w-5 text-white"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12.001 21s-6.716-4.39-9.223-8.077C.962 10.311 2.07 7.4 4.64 6.318c1.64-.709 3.55-.295 4.76.98l.6.63.6-.63c1.21-1.275 3.12-1.69 4.76-.98 2.57 1.082 3.68 3.993 1.86 6.605C18.718 16.61 12.001 21 12.001 21z"
+                  />
+                </svg>
+              </span>
+              <span class="font-display text-xl font-extrabold tracking-tight"
+                >HOPE<span class="text-amber-300">100</span></span
+              >
+            </div>
+            <!-- <p class="mt-4 text-sm text-indigo-100">
+              A 501(c)(3) nonprofit. EIN 00-0000000
+            </p>
+            <p class="mt-2 text-sm text-indigo-100/90">
+              123 Hope Street, Huntsville, AL
+            </p> -->
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="50">
+            <h4 class="font-semibold">Navigation</h4>
+            <ul class="mt-3 space-y-2 text-sm text-indigo-100/90">
+              <li><a class="hover:text-amber-300" href="#about">About</a></li>
+              <li>
+                <a class="hover:text-amber-300" href="#tokenomics"
+                  >Tokenomics</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-amber-300" href="#donations">Donations</a>
+              </li>
+              <li>
+                <a class="hover:text-amber-300" href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="100">
+            <h4 class="font-semibold">Useful Links</h4>
+            <ul class="mt-3 space-y-2 text-sm text-indigo-100/90">
+              <li>
+                <a class="hover:text-amber-300" href="https://pump.fun/coin/Fvbwx3pEPMhrbEm5E7hJGGh56Nd42ceyXTEYwYGRpump">Buy Now</a>
+              </li>
+              <li>
+                <a class="hover:text-amber-300" href="https://www.dextools.io/app/en/solana/pair-explorer/Fvbwx3pEPMhrbEm5E7hJGGh56Nd42ceyXTEYwYGRpump?t=1759251868620"
+                  >Dextools</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-amber-300" href="https://dexscreener.com/solana/ccfrmuon8dkyh6mppkjh4cm8w2tspbvhurnffv64kz6r">Dexscreener</a>
+              </li>
+            </ul>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="150">
+            <h4 class="font-semibold">Newsletter</h4>
+            <p class="mt-3 text-sm text-indigo-100/90">
+              Get updates on projects and impact.
+            </p>
+            <form class="mt-3 flex gap-2" onsubmit="return false;">
+              <input
+                type="email"
+                required
+                placeholder="you@example.com"
+                class="w-full px-4 rounded-xl border-white/20 bg-white/10 placeholder-indigo-200/80 text-white focus:border-amber-300 focus:ring-amber-300"
+              />
+              <button
+                type="submit"
+                class="rounded-xl bg-amber-400 px-4 py-2 text-indigo-950 font-medium hover:bg-amber-300 transition"
+              >
+                Join
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="mt-10 border-t border-white/20 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-sm text-indigo-100">
+            © <span id="year"></span> BrightHope Foundation.
+          </p>
+          <div class="text-xs text-indigo-200">All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: true,
+        offset: 80,
+        duration: 700,
+        easing: "ease-out-quad",
+      });
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuBtn?.addEventListener("click", () =>
+        mobileMenu.classList.toggle("hidden")
+      );
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Simple demo submit handlers
+      document.querySelectorAll("form").forEach((f) => {
+        f.addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert("Thanks! (Demo only)");
+        });
+      });
+    </script>
+  </body>
+</html>
